@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link href="https://fonts.cdnfonts.com/css/brushstrike" rel="stylesheet" />
+    <link href="https://fonts.cdnfonts.com/css/crazy-metro" rel="stylesheet" />
+    <link href="https://fonts.cdnfonts.com/css/handy-candy" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/quill@1.3.6/dist/quill.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/quill@1.3.6/dist/quill.snow.css" rel="stylesheet" />
+    <script src="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.12.4/dist/sweetalert2.all.min.js
+    "></script>
+    <link href="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.12.4/dist/sweetalert2.min.css
+    " rel="stylesheet" />
+
+    <link rel="stylesheet" href="./stylesheets/edit-blog.css" />
+</head>
+
+<body>
+    <nav class="rc_nav" id="centered_nav">
+        <div id="rc_logo">
+            <a href="./home.html" title="Logo">Bloggiator</a>
+        </div>
+        <div class="nav_items">
+            <a title="Home" href="./home.html">Home</a>
+            <a title="All Blogs" href="./all-blogs.html">All Blogs</a>
+            <a href="./create-blog.html" title="Create Blog">Create Blog</a>
+            <a href="./contact.html" title="Contact">Contact</a>
+        </div>
+        <div class="auth_buttons" id="auth_buttons">
+            <a id="login_button" href="./login.html" title="Login">Login</a>
+            <a id="register_button" href="./signup.html" title="Register">Register</a>
+            <a id="user_icon" class="user_icon" href="./profile.html" title="Profile"><i
+                    class="fa-regular fa-user"></i></a>
+            <a id="logout_button" href="#" title="Logout" onclick="logoutUser()">Logout</a>
+        </div>
+        <a href="javascript:void(0);" title="Menu" style="font-size: 18px" class="icon"
+            onclick="toggleMenu()">&#9776;</a>
+    </nav>
+    <div class="header">
+        <h1>Edit Blog</h1>
+    </div>
+
+    <form id="edit-blog-form" method="POST" action="http://localhost:8080/bloggiator/id/{ID}" <!-- Adjust this URL based
+        on your actual endpoint -->
+        enctype="multipart/form-data"
+        >
+        <input type="hidden" id="blog-id" name="ID" />
+        <div class="container">
+            <!-- Left Column: Content Editor -->
+            <div class="left-column">
+                <label for="content" class="l-label">Content</label>
+                <div class="form-group">
+                    <div id="quill-editor-container" class="quill-container"></div>
+                    <input type="hidden" id="content" name="content" />
+                </div>
+            </div>
+
+            <!-- Right Column: Title, Images, and Submit Button -->
+            <div class="right-column">
+                <div class="form-group">
+                    <label for="title" class="l-label">Title</label>
+                    <input type="text" id="title" name="title" placeholder="Blog Title" required />
+                </div>
+                <div class="form-group">
+                    <label for="cover-image" class="l-label">Cover Images</label>
+                    <input type="file" id="cover-image" name="files" accept="image/*" multiple />
+                    <div class="preview-container" id="preview-container"></div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn">Update Blog Post</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/quill@1.3.6/dist/quill.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Extract blog ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const blogId = urlParams.get("id");
+
+            if (!blogId) {
+                Swal.fire({
+                    title: "Error!",
+                    text: "Blog ID is missing.",
+                    icon: "error",
+                    confirmButtonText: "Ok",
+                }).then(() => {
+                    window.location.href = "./all-blogs.html";
+                });
+                return;
+            }
+
+            // Initialize Quill editor
+            const quill = new Quill("#quill-editor-container", {
+                theme: "snow",
+                modules: {
+                    toolbar: [
+                        [{ header: [1, 2, false] }],
+                        ["bold", "italic", "underline"],
+                        [{ list: "ordered" }, { list: "bullet" }],
+                        ["link", "image"],
+                        [{ align: [] }],
+                        ["clean"],
+                    ],
+                },
+            });
+
+            // Fetch and populate existing blog data
+            fetch(`http://localhost:8080/bloggiator/id/${blogId}`, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("jwt"),
+                },
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data && data.id) {
+                        document.getElementById("blog-id").value = data.id;
+                        document.getElementById("title").value = data.title;
+                        quill.root.innerHTML = data.content;
+
+                        // Populate image previews if any
+                        if (data.imageUrls) {
+                            const previewContainer = document.getElementById("preview-container");
+                            data.imageUrls.forEach((imgUrl) => {
+                                const img = document.createElement("img");
+                                img.src = imgUrl;
+                                const previewItem = document.createElement("div");
+                                previewItem.classList.add("preview-item");
+
+                                // Create delete button for each image
+                                const deleteBtn = document.createElement("button");
+                                deleteBtn.textContent = "X";
+                                deleteBtn.classList.add("delete-btn");
+                                deleteBtn.addEventListener("click", function () {
+                                    previewItem.remove();
+                                });
+
+                                previewItem.appendChild(img);
+                                previewItem.appendChild(deleteBtn);
+                                previewContainer.appendChild(previewItem);
+                            });
+                        }
+                    } else {
+                        throw new Error("Blog data not found");
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error loading blog data:", error);
+                    Swal.fire({
+                        title: "Error!",
+                        text: "There was an error loading the blog data.",
+                        icon: "error",
+                        confirmButtonText: "Try Again",
+                    });
+                });
+
+            document
+                .getElementById("edit-blog-form")
+                .addEventListener("submit", function (event) {
+                    event.preventDefault();
+
+                    // Set the content of the hidden textarea to the HTML from Quill editor
+                    document.getElementById("content").value = quill.root.innerHTML;
+
+                    const formData = new FormData(this);
+                    fetch(`http://localhost:8080/bloggiator/id/${blogId}`, {
+                        method: "PUT",
+                        headers: {
+                            Authorization: "Bearer " + localStorage.getItem("jwt"),
+                        },
+                        body: formData,
+                    })
+                        .then((response) => response.json())
+                        .then((data) => {
+                            if (data && data.id) {
+                                Swal.fire({
+                                    title: "Blog Updated!",
+                                    text: "Your blog post has been successfully updated.",
+                                    icon: "success",
+                                    confirmButtonText: "View Blog",
+                                }).then(() => {
+                                    window.location.href = `./view-blog.html?id=${data.id}`;
+                                });
+                            } else {
+                                throw new Error("Update failed");
+                            }
+                        })
+                        .catch((error) => {
+                            console.error("Error updating blog:", error);
+                            Swal.fire({
+                                title: "Error!",
+                                text: "There was an error updating your blog post.",
+                                icon: "error",
+                                confirmButtonText: "Try Again",
+                            });
+                        });
+                });
+        });
+
+        // Image Preview
+        document
+            .getElementById("cover-image")
+            .addEventListener("change", function (event) {
+                const previewContainer = document.getElementById("preview-container");
+                const files = event.target.files;
+
+                // Clear the existing previews
+                previewContainer.innerHTML = "";
+
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const img = document.createElement("img");
+                        img.src = e.target.result;
+                        const previewItem = document.createElement("div");
+                        previewItem.classList.add("preview-item");
+
+                        // Create delete button for each new image
+                        const deleteBtn = document.createElement("button");
+                        deleteBtn.textContent = "Remove";
+                        deleteBtn.classList.add("delete-btn");
+                        deleteBtn.addEventListener("click", function () {
+                            previewItem.remove();
+                        });
+
+                        previewItem.appendChild(img);
+                        previewItem.appendChild(deleteBtn);
+                        previewContainer.appendChild(previewItem);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+    </script>
+    </body>
+    
+    </html>

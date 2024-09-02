@@ -1,0 +1,482 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url("https://res.cloudinary.com/dmbgcgzm0/image/upload/v1724740206/Backgrounds/ztm8swrtbrlsslqlq2nv.jpg") no-repeat center center fixed;
+    background-position: center;
+    background-size: cover;
+    height: 80vh;
+}
+
+.rc_nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(54, 56, 65, 0.8);
+    padding: 0 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 6;
+    transition: background-color 0.3s ease-in-out;
+}
+    .delete-btn {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #e60000;
+            color: #0c0c0c;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            line-height: 12px;
+        }
+
+
+.rc_nav #rc_logo {
+    color: #fff;
+    font-size: 26px;
+    font-family: "BRUSHSTRIKE", sans-serif;
+    background: linear-gradient(45deg, #ffd700, #ffc107, #ffca28, #ffd700);
+    -webkit-background-clip: text;
+    font-weight: 800;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3),
+        0 0 5px rgba(255, 215, 0, 0.3), 0 0 10px rgba(255, 215, 0, 0.4);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: none;
+}
+
+.rc_nav #rc_logo {
+    padding: 22px;
+    color: #fff;
+    font-size: 19px;
+    font-family: Poppins;
+    text-decoration: none;
+}
+
+.rc_nav #rc_logo a {
+    color: inherit;
+    text-decoration: none;
+    font-family: "BRUSHSTRIKE", sans-serif;
+    font-size: 1.2rem;
+    padding: 0;
+}
+
+.rc_nav .nav_items {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.rc_nav .auth_buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.rc_nav a {
+    color: #fff;
+    padding: 22px 22px;
+    text-decoration: none;
+    font-family: Poppins;
+    font-size: 18px;
+    transition: background 0.3s linear;
+}
+
+.rc_nav a:hover {
+    font-family: "BRUSHSTRIKE", sans-serif;
+    background: linear-gradient(45deg, #ffd700, #ffc107, #ffca28, #ffd700);
+    -webkit-background-clip: text;
+    font-weight: 800;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3),
+        0 0 5px rgba(255, 215, 0, 0.3), 0 0 10px rgba(255, 215, 0, 0.4);
+    text-align: center;
+    display: inline-block;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: none;
+}
+
+.rc_nav .icon {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.rc_nav .user_icon {
+    display: none;
+    padding: 22px;
+}
+
+@media screen and (max-width: 768px) {
+
+    .rc_nav .nav_items,
+    .rc_nav .auth_buttons {
+        display: none;
+    }
+
+    .rc_nav.responsive {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .rc_nav.responsive .nav_items,
+    .rc_nav.responsive .auth_buttons {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .rc_nav.responsive .nav_items a,
+    .rc_nav.responsive .auth_buttons a {
+        padding: 15px;
+        width: 100%;
+        text-align: left;
+    }
+
+    .rc_nav .icon {
+        display: block;
+        cursor: pointer;
+        padding: 22px;
+        position: absolute;
+        right: 20px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
+
+    .content-wrapper {
+        flex-direction: column;
+        padding: 10px;
+        text-align: center;
+    }
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    /* Adjust column proportions as needed */
+    gap: 20px;
+    padding: 2rem;
+    background: rgba(74, 74, 74, 0.459);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin-top: 2rem;
+    margin: 20px auto;
+    /* Space for the fixed navbar */
+}
+
+.container:hover {
+    box-shadow: 0 0 13px 10px rgba(255, 215, 0, 0.4);
+    transition: box-shadow 0.8s ease-out;
+}
+
+.left-column .form-group {
+    display: flex;
+    flex-direction: column;
+    background-color: #c3c0c0e4;
+    color: white;
+    margin-top: 1rem;
+}
+
+.quill-container.ql-container.ql-snow {
+    box-shadow: 0 4px 15px rgba(12, 215, 215, 0.495);
+}
+
+.left-column .form-group label {
+    font-size: 1.5rem;
+    padding-bottom: 1.2rem;
+    border-style: none;
+}
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /* Ensure the button can be positioned absolutely within this column */
+}
+
+.right-column .form-group {
+    margin-bottom: 1rem;
+    color: wheat;
+}
+
+.right-column .form-group:last-child {
+    margin-bottom: 0;
+    /* Remove margin from the last form group */
+}
+
+.right-column .btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 10px 20px;
+    width: 100%;
+    background-color: #484f55;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.right-column .btn:hover {
+    font-family: "Handy candy", sans-serif;
+    background: linear-gradient(45deg, #ffd700, #ffc107, #ffca28, #ffd700);
+    -webkit-background-clip: text;
+    font-weight: 800;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3),
+        0 0 5px rgba(255, 215, 0, 0.3), 0 0 10px rgba(255, 215, 0, 0.4);
+    text-align: center;
+    /* position: relative; */
+    display: inline-block;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: none;
+    padding: 1rem;
+    border: solid 1px #ffd700;
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        /* Single column layout on smaller screens */
+        padding: 1rem;
+        /* Reduce padding on smaller screens */
+    }
+
+    .right-column .btn {
+        position: static;
+        /* Default positioning on smaller screens */
+        width: 100%;
+        /* Full-width button on smaller screens */
+        margin-top: 1rem;
+        /* Margin for spacing */
+    }
+}
+
+@media (max-width: 480px) {
+    .quill-container {
+        height: 150px;
+        /* Further reduce height for very small screens */
+    }
+
+    .preview-item img {
+        max-width: 80px;
+        /* Reduce preview image size */
+        max-height: 80px;
+    }
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* .form-group {
+        flex: 1;
+      } */
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 4px 15px rgba(12, 215, 215, 0.495);
+}
+
+.form-group input[type="file"] {
+    padding: 0.3;
+}
+
+.quill-container {
+    height: 400px;
+    backdrop-filter: blur(15px);
+    /* Blur effect */
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    /* Adjust height as needed */
+    border: 1px solid #313131a3;
+    border-radius: 5px;
+    color: #ffca28;
+    background: rgba(38,
+            36,
+            36,
+            0.881);
+    /* Semi-transparent white background */
+    backdrop-filter: blur(15px);
+    /* Blur effect */
+    -webkit-backdrop-filter: blur(15px);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.quill-container::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px 10px 0 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Hover effect for form groups */
+.left-column .form-group:hover {
+    box-shadow: 0 0 10px 5px rgba(255, 215, 0, 0.5);
+    transition: box-shadow 0.3s ease-in-out;
+    /* Smooth transition for box-shadow */
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+
+
+    box-shadow: 0 4px 15px rgba(12, 215, 215, 0.195);
+    transition: box-shadow 0.3s ease-in-out;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.preview-item {
+    position: relative;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.preview-item img {
+    max-width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.remove-img {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #e60000;
+    color: #0c0c0c;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    line-height: 12px;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+    }
+
+    .container {
+        padding: 1rem;
+        /* Reduce padding on smaller screens */
+    }
+
+    .btn {
+        width: 100%;
+        /* Make button full-width */
+    }
+}
+
+@media (max-width: 480px) {
+    .quill-container {
+        height: 150px;
+        /* Further reduce height for very small screens */
+    }
+
+    .preview-item img {
+        max-width: 80px;
+        /* Reduce preview image size */
+        max-height: 80px;
+    }
+}
+
+.title {
+    text-align: center;
+    margin-top: 80px;
+    font-family: "Handy candy", sans-serif;
+    text-align: center;
+    font-size: 1.3rem;
+    color: hsl(39, 100%, 50%);
+    box-shadow: 0 4px 15px rgba(12, 215, 215, 0.495);
+}
+
+.header {
+    text-align: center;
+    margin-top: 80px;
+    font-family: "Handy candy", sans-serif;
+    text-align: center;
+    font-size: 1.3rem;
+    color: hsl(39, 100%, 50%);
+}
+
+.l-label {
+    color: wheat;
+    font-size: 1.5rem;
+    padding-bottom: 8px;
+}

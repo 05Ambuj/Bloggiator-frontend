@@ -1,0 +1,339 @@
+*{
+  padding:0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url("https://res.cloudinary.com/dmbgcgzm0/image/upload/v1725188771/pexels-ingo-9816_bwvrdv.jpg") no-repeat center center fixed;
+      background-posit0ion: center;
+      background-size: cover;
+      max-height: 100vh;
+      margin: 0;
+      padding: 0;
+
+}
+.rc_nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(54, 56, 65, 0.8);
+  padding: 0 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 6;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.rc_nav #rc_logo {
+  color: #fff;
+  font-size: 26px;
+  font-family: "BRUSHSTRIKE", sans-serif;
+  background: linear-gradient(45deg, #ffd700, #ffc107, #ffca28, #ffd700);
+  -webkit-background-clip: text;
+  font-weight: 800;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 0 0 5px rgba(255, 215, 0, 0.3),
+    0 0 10px rgba(255, 215, 0, 0.4);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-decoration: none;
+}
+
+.rc_nav #rc_logo {
+  padding: 22px;
+  color: #fff;
+  font-size: 19px;
+  font-family: Poppins;
+  text-decoration: none;
+}
+
+.rc_nav #rc_logo a {
+  color: inherit;
+  text-decoration: none;
+  font-family: "BRUSHSTRIKE", sans-serif;
+  font-size: 1.2rem;
+  padding: 0;
+}
+
+.rc_nav .nav_items {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+.rc_nav .auth_buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.rc_nav a {
+  color: #fff;
+  padding: 22px 22px;
+  text-decoration: none;
+  font-family: Poppins;
+  font-size: 18px;
+  transition: background 0.3s linear;
+}
+
+.rc_nav a:hover {
+  font-family: "BRUSHSTRIKE", sans-serif;
+  background: linear-gradient(45deg, #ffd700, #ffc107, #ffca28, #ffd700);
+  -webkit-background-clip: text;
+  font-weight: 800;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 0 0 5px rgba(255, 215, 0, 0.3),
+    0 0 10px rgba(255, 215, 0, 0.4);
+  text-align: center;
+  /* position: relative; */
+  display: inline-block;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-decoration: none;
+}
+
+.rc_nav .icon {
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+#blogAuthor,#blogTime{
+  color: #e4e4e4;
+}
+#blogTitle{
+    font-family: 'Handy candy', sans-serif;
+      text-align: center;
+      font-size: 2.45rem;
+      color: hsl(39, 100%, 50%);
+    }
+#blogContainer {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  /* Default for mobile */
+  gap: 1.5rem;
+      max-height: calc(100vh - 150px); /* Adjust based on your header/nav height */
+    overflow-y: auto;
+
+}    .rc_nav .user_icon {
+  display: none;
+  padding: 22px;
+}
+
+.container {
+  padding-top: 90px;
+  
+}
+
+
+.blog-container {
+  background: rgba(114, 112, 112, 0.851);
+  border-radius: 8px;
+  padding: 20px;
+        box-shadow: 0 0 13px 10px rgba(255, 215, 0, 0.2);
+          transition: box-shadow 0.8s ease-out;
+          color: white;
+}
+
+.comment {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.comment-author {
+  font-weight: bold;
+}
+
+.comment-timestamp {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.comment-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.edit-comment {
+  background-color: #f3f3f3;
+  border: 1px solid #ccc;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 4px;
+}
+
+.delete-comment {
+  background-color: #ff0000;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.save-comment {
+  background-color: #38a169;
+}
+
+.cancel-edit {
+  background-color: #4a5568;
+}
+
+.delete-post {
+  background-color: #e53e3e;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  margin-top: 20px;
+  display: inline-block;
+  text-align: center;
+}
+
+.swiper-container {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.popup-slider {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.popup-slider.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup-slider-content {
+  position: relative;
+  width: 70%;
+  height: 80%;
+  background: #0000008b;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.popup-slider .swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+.popup-slider .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.rside {
+  padding-right: 16px;
+  /* Prevents content from being hidden behind the scrollbar */
+  box-sizing: border-box;
+  /* Ensures padding is included in the element's total width and height */
+}
+@media (max-width: 768px) {
+  .rc_nav .nav_items,
+  .rc_nav .auth_buttons {
+    display: none;
+  }
+
+  .rc_nav.responsive {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .rc_nav.responsive .nav_items,
+  .rc_nav.responsive .auth_buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .rc_nav.responsive .nav_items a,
+  .rc_nav.responsive .auth_buttons a {
+    padding: 15px;
+    width: 100%;
+    text-align: left;
+  }
+
+  .rc_nav .icon {
+    display: block;
+    cursor: pointer;
+    padding: 22px;
+    position: absolute;
+    right: 20px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  .container{
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    /* padding: 0; */
+    /* margin: 0; */
+}
+.lside{
+    width: 100%;
+}
+.rside{
+    width: 100%;
+}
+}

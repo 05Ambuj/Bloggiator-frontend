@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Blogs</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://fonts.cdnfonts.com/css/brushstrike" rel="stylesheet" />
+    <link href="https://fonts.cdnfonts.com/css/crazy-metro" rel="stylesheet" />
+    <link href="https://fonts.cdnfonts.com/css/handy-candy" rel="stylesheet" />
+    <link rel="stylesheet" href="./stylesheets/profile.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+    <nav class="rc_nav" id="centered_nav">
+        <div id="rc_logo">
+            <a href="./home.html" title="Logo">Bloggiator</a>
+        </div>
+        <div class="nav_items">
+            <a href="./home.html" title="Home">Home</a>
+            <a href="./all-blogs.html" title="Services">All Blogs</a>
+            <a href="./create-blog.html" title="About">Create Blog</a>
+            <a href="#contact" title="Contact">Contact</a>
+        </div>
+        <div class="auth_buttons" id="auth_buttons">
+            <a id="login_button" href="./login.html" title="Login">Login</a>
+            <a id="register_button" href="./signup.html" title="Register">Register</a>
+            <a id="user_icon" class="user_icon" href="./profile.html" title="Profile"><i
+                    class="fa-regular fa-user"></i></a>
+            <a id="logout_button" href="#logout" title="Logout">Logout</a>
+        </div>
+        <a href="javascript:void(0);" title="Menu" style="font-size: 18px" class="icon"
+            onclick="toggleMenu()">&#9776;</a>
+    </nav>
+
+</div>
+    <div class="container my-8 p-8">
+        <h1 class="text-3xl font-bold mb-6 mt-4 text-center header">
+            <u>All Blogs By User</u>
+        </h1>
+        <div id="blogsContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Blog cards will be inserted here dynamically by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const token = localStorage.getItem("jwt");
+
+            if (token && token !== "null" && token !== "undefined") {
+                checkAuthentication(true);
+                fetchBlogs("http://localhost:8080/bloggiator/all-blogs", token);
+            }
+
+            const logoutButton = document.getElementById("logout_button");
+            logoutButton.addEventListener("click", () => {
+                localStorage.removeItem("jwt");
+                window.location.href = "./home.html"; // Redirect to home page
+            });
+        });
+
+        function fetchBlogs(url, token = null) {
+            const headers = token
+                ? {
+                    Authorization: "Bearer " + token,
+                }
+                : {};
+
+            fetch("http://localhost:8080/bloggiator/all-blogs", {
+                method: "GET",
+                headers: headers,
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        return response.text().then((text) => {
+                            throw new Error(text);
+                        });
+                    }
+                })
+                .then((data) => {
+                    const blogsContainer = document.getElementById("blogsContainer");
+                    blogsContainer.innerHTML = data
+                        .map(
+                            (blog) => `
+            <a href="view-blog.html?id=${blog.id}" class="nft">
+              <div class="main">
+                <img class="tokenImage" src="${blog.imageUrls[0] || "default.jpg"
+                                }" alt="${blog.title}" />
+                <h2>${blog.title}</h2>
+                <div class="tokenInfo">
+                  <div class="duration">
+                    <ins>◷</ins>
+                    <p>${new Date(blog.date).toLocaleDateString()}</p>
+                  </div>
+                </div>
+                <p class="description">${blog.content.length > 100
+                                    ? blog.content.substring(0, 200) + "..."
+                                    : blog.content
+                                }</p>
+                <hr />
+              </div>
+            </a>`
+                        )
+                        .join("");
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
+        }
+
+        function checkAuthentication(isLoggedIn) {
+            const loginButton = document.getElementById("login_button");
+            const registerButton = document.getElementById("register_button");
+            const logoutButton = document.getElementById("logout_button");
+            const userIcon = document.getElementById("user_icon");
+
+            if (isLoggedIn) {
+                loginButton.style.display = "none";
+                registerButton.style.display = "none";
+                logoutButton.style.display = "inline-block";
+                userIcon.style.display = "inline-block"; // Show user icon
+            } else {
+                loginButton.style.display = "inline-block";
+                registerButton.style.display = "inline-block";
+                logoutButton.style.display = "none";
+                userIcon.style.display = "none"; // Hide user icon
+            }
+        }
+
+        function toggleMenu() {
+            const nav = document.getElementById("centered_nav");
+            if (nav.className === "rc_nav") {
+                nav.className += " responsive";
+                document.addEventListener("click", closeMenuOnClickOutside);
+            } else {
+                nav.className = "rc_nav";
+                document.removeEventListener("click", closeMenuOnClickOutside);
+            }
+        }
+
+        function closeMenuOnClickOutside(event) {
+            const nav = document.getElementById("centered_nav");
+            if (!nav.contains(event.target)) {
+                nav.className = "rc_nav";
+                document.removeEventListener("click", closeMenuOnClickOutside);
+            }
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+                const token = localStorage.getItem("jwt");
+
+                if (token && token !== "null" && token !== "undefined") {
+                    checkAuthentication(true);
+                    fetchBlogs("http://localhost:8080/bloggiator/all-blogs", token);
+                    fetchUserInfo("http://localhost:8080/user/profile", token);
+                }
+
+                const logoutButton = document.getElementById("logout_button");
+                logoutButton.addEventListener("click", () => {
+                    localStorage.removeItem("jwt");
+                    window.location.href = "./home.html"; // Redirect to home page
+                });
+            });
+
+            function fetchUserInfo(url, token) {
+                fetch(url, {
+                    method: "GET",
+                    headers: {
+                        Authorization: "Bearer " + token,
+                    },
+                })
+                    .then((response) => {
+                        if (response.ok) {
+                            return response.json();
+                        } else {
+                            return response.text().then((text) => {
+                                throw new Error(text);
+                            });
+                        }
+                    })
+                    .then((user) => {
+                        const userDetails = document.getElementById("userDetails");
+                        userDetails.innerHTML = `
+            <img src="${user.profilePicture || 'default-profile.jpg'}" alt="Profile Picture" class="w-32 h-32 rounded-full mb-4">
+            <h3 class="text-xl font-semibold">${user.userName}</h3>
+            <p class="text-gray-600">Email: ${user.email}</p>
+            <p class="text-gray-600">Bio: ${user.bio || 'No bio available'}</p>
+            <p class="text-gray-600">Joined: ${new Date(user.joinedDate).toLocaleDateString()}</p>
+            <p class="text-gray-600">Role: ${user.role || 'Not specified'}</p>
+        `;
+                    })
+                    .catch((error) => {
+                        console.error("Error:", error);
+                    });
+            }
+
+    </script>
+    <!-- <script src="./javascript/all-blogs.js"></script> -->
+</body>
+
+</html>

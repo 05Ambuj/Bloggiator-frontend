@@ -1,0 +1,453 @@
+body {
+    font-family: "Arial", sans-serif;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url("https://res.cloudinary.com/dmbgcgzm0/image/upload/v1724740232/Backgrounds/sazxczdrgl1j4ilovqjt.jpg") no-repeat center center fixed;
+    background-posit0ion: center;
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar styles */
+.rc_nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(54, 56, 65, 0.8);
+    padding: 0 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 6;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.rc_nav #rc_logo {
+    color: #fff;
+    font-size: 26px;
+    font-family: "BRUSHSTRIKE", sans-serif;
+    background: linear-gradient(45deg, #ffd700, #ffc107, #ffca28, #ffd700);
+    -webkit-background-clip: text;
+    font-weight: 800;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 0 0 5px rgba(255, 215, 0, 0.3),
+        0 0 10px rgba(255, 215, 0, 0.4);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: none;
+}
+
+.rc_nav #rc_logo {
+    padding: 22px;
+    color: #fff;
+    font-size: 19px;
+    font-family: Poppins;
+    text-decoration: none;
+}
+
+.rc_nav #rc_logo a {
+    color: inherit;
+    text-decoration: none;
+    font-family: "BRUSHSTRIKE", sans-serif;
+    font-size: 1.2rem;
+    padding: 0;
+}
+
+.rc_nav .nav_items {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.rc_nav .auth_buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.rc_nav a {
+    color: #fff;
+    padding: 22px 22px;
+    text-decoration: none;
+    font-family: Poppins;
+    font-size: 18px;
+    transition: background 0.3s linear;
+}
+
+.rc_nav a:hover {
+    font-family: "BRUSHSTRIKE", sans-serif;
+    background: linear-gradient(45deg, #ffd700, #ffc107, #ffca28, #ffd700);
+    -webkit-background-clip: text;
+    font-weight: 800;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 0 0 5px rgba(255, 215, 0, 0.3),
+        0 0 10px rgba(255, 215, 0, 0.4);
+    text-align: center;
+    /* position: relative; */
+    display: inline-block;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: none;
+}
+
+.rc_nav .icon {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+#blogsContainer {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    /* Default for mobile */
+    gap: 1.5rem;
+    /* Space between the grid items */
+}
+
+.rc_nav .user_icon {
+    display: none;
+    padding: 22px;
+}
+
+@media (min-width: 640px) {
+
+    /* sm */
+    #blogsContainer {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columns on small screens */
+    }
+}
+
+@media (min-width: 768px) {
+
+    /* md */
+    #blogsContainer {
+        grid-template-columns: repeat(3, 1fr);
+        /* 3 columns on medium screens */
+    }
+}
+
+@media (min-width: 1024px) {
+
+    /* lg */
+    #blogsContainer {
+        grid-template-columns: repeat(4, 1fr);
+        /* 4 columns on large screens */
+    }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+
+    .rc_nav .nav_items,
+    .rc_nav .auth_buttons {
+        display: none;
+    }
+
+    .rc_nav.responsive {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .rc_nav.responsive .nav_items,
+    .rc_nav.responsive .auth_buttons {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .rc_nav.responsive .nav_items a,
+    .rc_nav.responsive .auth_buttons a {
+        padding: 15px;
+        width: 100%;
+        text-align: left;
+    }
+
+    .rc_nav .icon {
+        display: block;
+        cursor: pointer;
+        padding: 22px;
+        position: absolute;
+        right: 20px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
+}
+
+.nft {
+    text-align: center;
+    color: #fff;
+    user-select: none;
+    background-color: hsl(0, 1%, 44%);
+    /* Gold background color */
+    border: 1px solid #fff;
+    border-radius: 0.7rem;
+    box-shadow: 0 7px 20px 5px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    overflow: hidden;
+    position: relative;
+    /* For positioning pseudo-element */
+    transition: 0.5s all;
+    display: flex;
+    flex-direction: column;
+    height: 450px;
+    /* Fixed height */
+    max-width: 335px;
+    /* Fixed width */
+    padding: 0rem;
+    box-sizing: border-box;
+}
+
+.nft hr {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #888 55;
+    margin-top: 0;
+}
+
+.nft ins {
+    text-decoration: none;
+}
+
+.nft .main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* padding: 0.2rem; */
+}
+
+.nft .main .tokenImage {
+    border-radius: 0.5rem;
+    max-width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.nft .main .description {
+    margin: 0.5rem 0;
+    color: #a89ec9;
+}
+
+.nft .main .tokenInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nft .main .tokenInfo .duration {
+    display: flex;
+    align-items: center;
+    color: #a89ec9;
+}
+
+.nft .main .tokenInfo .price {
+    display: flex;
+    align-items: center;
+    color: #ee83e5;
+    font-weight: 700;
+}
+
+.nft .main .tokenInfo .price ins {
+    margin-left: -0.3rem;
+    margin-right: 0.5rem;
+}
+
+.nft .main .tokenInfo .duration {
+    display: flex;
+    align-items: center;
+    color: #513f8f;
+    font-size: 0.3;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+    font-weight: 600;
+    margin-right: 0.2rem;
+}
+
+.nft .main .tokenInfo .duration ins {
+    margin: 0.5rem;
+    margin-bottom: 0.4rem;
+}
+
+.nft .main .creator {
+    display: flex;
+    align-items: center;
+    margin-top: 0.2rem;
+    margin-bottom: -0.3rem;
+}
+
+.nft .main .creator ins {
+    color: #a89ec9;
+    text-decoration: none;
+}
+
+.nft .main .creator .wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid #fff 22;
+    padding: 0.3rem;
+    margin: 0;
+    margin-right: 0.5rem;
+    border-radius: 100%;
+    box-shadow: inset 0 0 0 4px #000 aa;
+}
+
+.nft .main .creator .wrapper img {
+    border-radius: 100%;
+    border: 1px solid #fff 22;
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+    margin: 0;
+}
+
+.nft:hover {
+    box-shadow: 0 0 20px 15px rgba(255, 215, 0, 0.9);
+    /* Golden glow effect */
+    transform: scale(1.02);
+    /* Slight scale up effect */
+    transition: 0.5s all;
+    background: #5b5b5b50;
+    color: hsl(39, 100%, 50%);
+}
+
+/* Thunder-like shine effect on the front with animation */
+.nft::before {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(135deg,
+            rgba(255, 215, 0, 0.8) 0%,
+            rgba(255, 255, 255, 0) 50%);
+    opacity: 0;
+    transform: rotate(-30deg);
+    transition: opacity 0.5s;
+    pointer-events: none;
+    /* Ensure it doesn't block clicks */
+    z-index: 1;
+    /* Ensure it is above the card's content */
+}
+
+.nft:hover::before {
+    opacity: 1;
+    /* Show the shine effect on hover */
+    animation: shineAnimation 1s forwards;
+    /* Apply animation on hover */
+}
+
+@keyframes shineAnimation {
+    0% {
+        top: 100%;
+        left: -100%;
+        opacity: 1;
+    }
+
+    100% {
+        top: -100%;
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+.bg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.bg h1 {
+    font-size: 20rem;
+    filter: opacity(0.5);
+}
+
+.card .description {
+    margin: 0.5rem 0;
+    color: #000;
+    /* Adjust text color for better readability */
+    font-size: 0.9rem;
+    /* Adjust font size if needed */
+}
+
+.card .tokenInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main .tokenInfo .duration {
+    display: flex;
+    align-items: center;
+    color: #333;
+    /* Adjust text color for better readability */
+}
+
+.main h2 {
+    font-family: "BRUSHSTRIKE", sans-serif;
+    font-size: 2.2rem;
+    color: #ffd700;
+    /* Base golden color */
+    background: linear-gradient(45deg,
+            #ffd700,
+            /* Gold */
+            #ffc107,
+            /* A bit darker gold */
+            #ffca28,
+            /* Lighter gold */
+            #ffd700
+            /* Gold again to blend */
+        );
+    -webkit-background-clip: text;
+    /* Clips background to text */
+    -webkit-text-fill-color: transparent;
+    /* Hides the default text color */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3),
+        /* Subtle shadow */
+        0 0 5px rgba(255, 215, 0, 0.3),
+        0 0 10px rgba(255, 215, 0, 0.4);
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.header {
+    font-family: "crazy metro", sans-serif;
+    text-align: center;
+    font-size: 2.6rem;
+    letter-spacing: 0.8rem;
+    /* font-weight:600; */
+    margin-top: 45px;
+    margin-bottom: 38px;
+    color: hsl(39, 100%, 50%);
+    margin-top: rem;
+}
+
+.rside{
+    padding-top:4rem;
+    
+    background-color: #3a3a3a60;
+    color: goldenrod;
+}
+.lside{
+    background-color: #3a3a3a60;
+    color: goldenrod;
+}
+.lside label{
+    color: goldenrod;
+}
