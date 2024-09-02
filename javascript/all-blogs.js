@@ -3,10 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (token && token !== "null" && token !== "undefined") {
     checkAuthentication(true);
-    fetchBlogs("http://localhost:8080/bloggiator/all", token);
+    fetchBlogs("https://bloggiator-backend-production.up.railway.app/bloggiator/all", token);
   } else {
     checkAuthentication(false);
-    fetchBlogs("http://localhost:8080/bloggiator/all");
+    fetchBlogs("https://bloggiator-backend-production.up.railway.app/bloggiator/all");
   }
 
   const logoutButton = document.getElementById("logout_button");
@@ -23,7 +23,7 @@ function fetchBlogs(url, token = null) {
       }
     : {};
 
-  fetch("http://localhost:8080/bloggiator/all", {
+  fetch("https://bloggiator-backend-production.up.railway.app/bloggiator/all", {
     method: "GET",
     headers: headers,
   })
@@ -110,7 +110,7 @@ function closeMenuOnClickOutside(event) {
 
   // Fetch blogs if authenticated
   if (token && token !== "null" && token !== "undefined") {
-    fetch("http://localhost:8080/bloggiator/all-blogs", {
+    fetch("https://bloggiator-backend-production.up.railway.app/bloggiator/all-blogs", {
       method: "GET",
       headers: {
         Authorization: "Bearer " + token,

@@ -51,7 +51,7 @@
 
             if (token && token !== "null" && token !== "undefined") {
                 checkAuthentication(true);
-                fetchBlogs("http://localhost:8080/bloggiator/all-blogs", token);
+                fetchBlogs("https://bloggiator-backend-production.up.railway.app/bloggiator/all-blogs", token);
             }
 
             const logoutButton = document.getElementById("logout_button");
@@ -68,7 +68,7 @@
                 }
                 : {};
 
-            fetch("http://localhost:8080/bloggiator/all-blogs", {
+            fetch("https://bloggiator-backend-production.up.railway.app/bloggiator/all-blogs", {
                 method: "GET",
                 headers: headers,
             })
@@ -154,8 +154,8 @@
 
                 if (token && token !== "null" && token !== "undefined") {
                     checkAuthentication(true);
-                    fetchBlogs("http://localhost:8080/bloggiator/all-blogs", token);
-                    fetchUserInfo("http://localhost:8080/user/profile", token);
+                    fetchBlogs("https://bloggiator-backend-production.up.railway.app/bloggiator/all-blogs", token);
+                    fetchUserInfo("https://bloggiator-backend-production.up.railway.app/user/profile", token);
                 }
 
                 const logoutButton = document.getElementById("logout_button");

@@ -147,7 +147,7 @@
             document.getElementById("content").value = quill.root.innerHTML;
 
             const formData = new FormData(this);
-            fetch("http://localhost:8080/bloggiator", {
+            fetch("https://bloggiator-backend-production.up.railway.app/bloggiator", {
               method: "POST",
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("jwt"), // Ensure JWT is correctly stored in localStorage

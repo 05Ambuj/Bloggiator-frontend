@@ -132,7 +132,7 @@
             }
 
             // Fetch blog details
-            fetch(`http://localhost:8080/bloggiator/id/${blogId}`, {
+            fetch(`https://bloggiator-backend-production.up.railway.app/bloggiator/id/${blogId}`, {
                 method: "GET",
             })
                 .then((response) => response.json())
@@ -167,7 +167,7 @@
                 .catch((error) => console.error(error));
 
             confirmDeleteButton.addEventListener("click", () => {
-                fetch(`http://localhost:8080/bloggiator/id/${blogId}`, {
+                fetch(`https://bloggiator-backend-production.up.railway.app/bloggiator/id/${blogId}`, {
                     method: "DELETE",
                     headers: {
                         Authorization: "Bearer " + jwtToken,
@@ -189,7 +189,7 @@
             });
 
             // Fetch comments
-            fetch(`http://localhost:8080/comments/blog/${blogId}`, {
+            fetch(`https://bloggiator-backend-production.up.railway.app/comments/blog/${blogId}`, {
                 method: "GET",
             })
                 .then((response) => response.json())
@@ -245,7 +245,7 @@
                     return;
                 }
 
-                fetch(`http://localhost:8080/comments`, {
+                fetch(`https://bloggiator-backend-production.up.railway.app/comments`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -259,7 +259,7 @@
                     .then((response) => {
                         if (response.ok) {
                             document.getElementById("commentContent").value = "";
-                            return fetch(`http://localhost:8080/comments/blog/${blogId}`, {
+                            return fetch(`https://bloggiator-backend-production.up.railway.app/comments/blog/${blogId}`, {
                                 method: "GET",
                             });
                         } else {
@@ -292,7 +292,7 @@
             function handleDeleteComment(event) {
                 const commentId = event.target.getAttribute("data-id");
 
-                fetch(`http://localhost:8080/comments/${commentId}`, {
+                fetch(`https://bloggiator-backend-production.up.railway.app/comments/${commentId}`, {
                     method: "DELETE",
                     headers: {
                         Authorization: "Bearer " + jwtToken,
@@ -314,7 +314,7 @@
                 const newContent = prompt("Edit your comment:");
 
                 if (newContent) {
-                    fetch(`http://localhost:8080/comments/${commentId}`, {
+                    fetch(`https://bloggiator-backend-production.up.railway.app/comments/${commentId}`, {
                         method: "PUT",
                         headers: {
                             "Content-Type": "application/json",

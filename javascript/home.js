@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Fetch blogs if authenticated
   if (token && token !== "null" && token !== "undefined") {
-    fetch("http://localhost:8080/bloggiator/all-blogs", {
+    fetch("https://bloggiator-backend-production.up.railway.app/bloggiator/all-blogs", {
       method: "GET",
       headers: {
         Authorization: "Bearer " + token,

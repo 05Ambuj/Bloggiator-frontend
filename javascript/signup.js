@@ -16,7 +16,7 @@ function togglePasswordVisibility(inputId, iconId) {
 async function checkUsernameExists(username) {
     try {
         const response = await fetch(
-            `http://localhost:8080/public/check-username?username=${username}`
+            `https://bloggiator-backend-production.up.railway.app/public/check-username?username=${username}`
         );
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -32,7 +32,7 @@ async function checkUsernameExists(username) {
 async function checkEmailExists(email) {
     try {
         const response = await fetch(
-            `http://localhost:8080/public/check-email?email=${email}`
+            `https://bloggiator-backend-production.up.railway.app/public/check-email?email=${email}`
         );
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -96,7 +96,7 @@ document.getElementById("signupForm").addEventListener("submit", async function 
         roles: ["USER"],
     };
 
-    fetch("http://localhost:8080/public/signup", {
+    fetch("https://bloggiator-backend-production.up.railway.app/public/signup", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

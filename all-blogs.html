@@ -68,10 +68,10 @@
 
           if (token && token !== "null" && token !== "undefined") {
             checkAuthentication(true);
-            fetchBlogs("http://localhost:8080/bloggiator/all", token);
+            fetchBlogs("https://bloggiator-backend-production.up.railway.app/bloggiator/all", token);
           } else {
             checkAuthentication(false);
-            fetchBlogs("http://localhost:8080/bloggiator/all");
+            fetchBlogs("https://bloggiator-backend-production.up.railway.app/bloggiator/all");
           }
 
           const logoutButton = document.getElementById("logout_button");
@@ -88,7 +88,7 @@
             }
             : {};
 
-          fetch("http://localhost:8080/bloggiator/all", {
+          fetch("https://bloggiator-backend-production.up.railway.app/bloggiator/all", {
             method: "GET",
             headers: headers,
           })
